@@ -6,7 +6,6 @@ router.post('/', async (req, res) => {
   try {
     const dbUserData = await User.create({
       username: req.body.username,
-      email: req.body.email,
       password: req.body.password,
     });
 
@@ -21,12 +20,13 @@ router.post('/', async (req, res) => {
   }
 });
 
+
 // Login
 router.post('/login', async (req, res) => {
   try {
     const dbUserData = await User.findOne({
       where: {
-        email: req.body.email,
+        username: req.body.username,
       },
     });
 
