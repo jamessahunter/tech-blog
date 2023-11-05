@@ -15,9 +15,10 @@ const buttonHandler = async (event) => {
         body: JSON.stringify({  content, id }),
         headers: { 'Content-Type': 'application/json' },
       });
-  
+      console.log("response "+response);
+
       if (response.ok) {
-        document.location.replace('/post'/`${id}`);
+        document.location.replace(`/post/${id}`);
       } else {
         alert('Failed to Post.');
       }

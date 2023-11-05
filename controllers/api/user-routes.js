@@ -8,10 +8,11 @@ router.post('/', async (req, res) => {
       username: req.body.username,
       password: req.body.password,
     });
-
+    const user = dbUserData.get({ plain: true })
     req.session.save(() => {
       req.session.loggedIn = true;
-      req.session.username=req.body.username;
+      req.session.user_id=user.id;
+      req.session.username=username;
       res.status(200).json(dbUserData);
     });
   } catch (err) {
@@ -45,9 +46,11 @@ router.post('/login', async (req, res) => {
         .json({ message: 'Incorrect email or password. Please try again!' });
       return;
     }
+    const user = dbUserData.get({ plain: true })
 
     req.session.save(() => {
       req.session.loggedIn = true;
+      req.session.user_id=user.id
       req.session.username=req.body.username;
       res
         .status(200)
