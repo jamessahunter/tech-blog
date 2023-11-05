@@ -1,0 +1,25 @@
+<section class="card">
+    <header>{{post.title}}</header>
+    <h2>Posted by {{post.username}} on {{format_date post.createdAt}}</h2>
+    <p>{{post.content}}</p>
+  </a>
+
+{{#each comments}}
+    {{> comment-details}}
+{{/each}}
+</section>
+<div class="row justify-space-between-md">
+  <div class="login-card">
+    <h2 class="page-title">Comment</h2>
+    <form class="form comment-form">
+      <div class="form-group">
+        <label for="comment-content">Comment:</label>
+        <input class="form-input" type="text" id="comment-content" />
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary" type="submit">Create</button>
+      </div>
+    </form>
+  </div>
+
+  <script src="/js/comment.js"></script>

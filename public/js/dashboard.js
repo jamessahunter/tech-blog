@@ -1,5 +1,3 @@
-
-
   const buttonHandler = async (event) => {
     event.preventDefault();
     const title = document.querySelector('#post-title').value.trim();

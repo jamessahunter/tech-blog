@@ -1,11 +1,12 @@
 const router = require('express').Router();
-const { User, Post } = require('../models');
+const { User, Post, Comment } = require('../models');
 // Import the custom middleware
 const {withAuth, areAuth } = require('../utils/auth');
 // router.use(withAuth);
 // GET all galleries for homepage
 router.get('/', async (req, res) => {
   try {
+    console.log(req.session);
     const dbPostData = await Post.findAll();
 
     const posts = dbPostData.map((post) =>
@@ -23,13 +24,49 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/dashboard', withAuth, async(req,res)=>{
-  // console.log(req.session);
-  res.render('dashboard');
+  try {
+    console.log(req.session.username)
+    const dbPostData = await Post.findAll({
+      where: {username: `${req.session.username}`}
+    });
+
+    const posts = dbPostData.map((post) =>
+      post.get({ plain: true })
+    );
+
+    res.render('dashboard', {
+      posts,
+      loggedIn: req.session.loggedIn,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
 })
 
-router.get('/dashboard/new/', withAuth, async(req,res)=>{
+router.get('/dashboard/new', withAuth, async(req,res)=>{
   // console.log(req.session);
   res.render('dashboard-new');
+})
+
+
+router.get('/post/:id',  withAuth, async (req,res)=>{
+  try{
+    console.log(req.params.id);
+  const dbPostData = await Post.findByPk(req.params.id);
+    const dbCommentData =await Comment.findAll({
+      where: {post_id: `${req.params.id}`}
+    })
+    console.log(dbCommentData);
+  const post = dbPostData.get({ plain: true });
+  const comments = dbCommentData.map((comment) =>
+  comment.get({ plain: true }));
+    // console.log(post);
+  res.render('post', { post, comments ,loggedIn: req.session.loggedIn });
+} catch (err) {
+  console.log(err);
+  res.status(500).json(err);
+}
 })
 
 // GET one gallery
