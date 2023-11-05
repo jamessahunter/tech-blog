@@ -79,6 +79,37 @@ router.get('/post/:id',  withAuth, async (req,res)=>{
 })
 
 
+router.put('/post/:id', withAuth, (req,res)=>{
+  Post.update(req.body,{
+    where: {
+      id:req.params.id,
+    },
+  })
+  .then((post) => {
+    return res.json(post);
+  })
+  .catch((err) => {
+    res.status(400).json(err);
+  });
+})
+
+router.delete('/post/:id', withAuth, async(req,res)=>{
+  try{
+    await Post.destroy({
+      where:{
+        id:req.params.id,
+      }
+    });
+    res.status(200).json('Post Deleted');
+  }catch{
+    res.status(500).json(err);
+  }
+
+
+})
+
+
+
 router.get('/login', areAuth, (req, res) => {
   res.render('login');
 });

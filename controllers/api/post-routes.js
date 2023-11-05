@@ -1,7 +1,5 @@
 const router = require('express').Router();
 const { Post, Comment } = require('../../models');
-// Import the custom middleware
-const {withAuth, areAuth } = require('../../utils/auth');
 
 // CREATE new post
 router.post('/', async (req, res) => {

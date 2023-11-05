@@ -1,1 +1,23 @@
-<h1>Stuff goes here</h1>
+<div class="row justify-space-between-md">
+  <div class="login-card">
+    <h2 class="page-title">New Post</h2>
+    <form class="form post-form">
+      <div class="form-group">
+        <label for="post-title">Title:</label>
+        <input class="form-input" type="text" id="post-title" value="{{post.title}}" />
+      </div>
+      <div class="form-group">
+        <label for="post-content">Content:</label>
+        <input class="form-input" type="text" id="post-content" value="{{post.content}}"/>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary delete" type="button">Delete</button>
+        <button class="btn btn-primary create" type="submit">Update</button>
+      </div>
+    </form>
+
+  </div>
+  
+</div>
+
+<script src="/js/update.js"></script>
