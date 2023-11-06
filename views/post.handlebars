@@ -1,14 +1,16 @@
-<section class="card">
+<section class="container">
+<section class="login-card">
     <header>{{post.title}}</header>
     <h2>Posted by {{post.username}} on {{format_date post.createdAt}}</h2>
     <p>{{post.content}}</p>
   </a>
+</section>
 
 {{#each comments}}
-    {{> comment-details}}
+  {{> comment-details}}
 {{/each}}
-</section>
-<div class="row justify-space-between-md">
+
+
   <div class="login-card">
     <h2 class="page-title">Comment</h2>
     <form class="form comment-form">
@@ -21,5 +23,5 @@
       </div>
     </form>
   </div>
-
+</section>
   <script src="/js/comment.js"></script>
