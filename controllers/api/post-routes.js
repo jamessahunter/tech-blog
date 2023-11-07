@@ -4,10 +4,6 @@ const { Post, Comment } = require('../../models');
 // CREATE new post
 router.post('/', async (req, res) => {
     try {
-        console.log("title " + req.body.title);
-        console.log("contet "+ req.body.content);
-        console.log("username "+ req.session.username);
-        console.log("user_id "+ req.session.user_id);
       const dbPostData = await Post.create({
         username: req.session.username,
         title: req.body.title,

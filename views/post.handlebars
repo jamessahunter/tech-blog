@@ -1,16 +1,20 @@
-<section class="container">
+<div class="row ">
+  <div class="col-8">
 <section class="login-card">
-    <header>{{post.title}}</header>
+    <h1>{{post.title}}</h1>
     <h2>Posted by {{post.username}} on {{format_date post.createdAt}}</h2>
     <p>{{post.content}}</p>
   </a>
 </section>
+</div>
+</div>
 
 {{#each comments}}
   {{> comment-details}}
 {{/each}}
 
-
+<div class="row">
+  <div class="col-8">
   <div class="login-card">
     <h2 class="page-title">Comment</h2>
     <form class="form comment-form">
@@ -23,5 +27,6 @@
       </div>
     </form>
   </div>
-</section>
+</div>
+</div>
   <script src="/js/comment.js"></script>
