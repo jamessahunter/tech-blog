@@ -35,11 +35,8 @@ header {
   color: var(--light);
 }
 
-/* main {
-  display: flex;
-  flex-wrap: wrap;
-  flex-grow: 1;
-} */
+
+
 
 aside {
   flex: 0;

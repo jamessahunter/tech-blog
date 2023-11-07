@@ -1,3 +1,5 @@
+// handles updating a post
+
 const updateHandler = async (event) => {
     event.preventDefault();
     const title = document.querySelector('#post-title').value.trim();
@@ -22,9 +24,8 @@ const updateHandler = async (event) => {
     }
   };
 
-
+//handles deleting a post
 const deleteHandler = async () => {
-    console.log("works")
     const id = window.location.toString().split('/')[
         window.location.toString().split('/').length-1
       ];

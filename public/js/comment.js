@@ -1,3 +1,5 @@
+// file ot handle comment submission
+
 const buttonHandler = async (event) => {
     event.preventDefault();
     const content = document.querySelector('#comment-content').value.trim();

@@ -1,8 +1,8 @@
 const router = require('express').Router();
-const { User, Post, Comment } = require('../models');
+const {  Post, Comment } = require('../models');
 // Import the custom middleware
-const {withAuth, areAuth } = require('../utils/auth');
-
+const {withAuth } = require('../utils/auth');
+//gets the post of a specific id update
 router.get('/update/:id',withAuth, async(req,res)=>{
     try{
      const dbPostData = await Post.findByPk(req.params.id);
@@ -15,6 +15,7 @@ router.get('/update/:id',withAuth, async(req,res)=>{
    }
  })
  
+ //gets a specific post by id
  router.get('/:id',  withAuth, async (req,res)=>{
    try{
    const dbPostData = await Post.findByPk(req.params.id);
@@ -33,7 +34,7 @@ router.get('/update/:id',withAuth, async(req,res)=>{
  }
  })
  
- 
+ //updates a specfic post based on id
  router.put('/:id', withAuth, (req,res)=>{
    Post.update(req.body,{
      where: {
@@ -48,6 +49,7 @@ router.get('/update/:id',withAuth, async(req,res)=>{
    });
  })
  
+ //deletes a post with specific id
  router.delete('/:id', withAuth, async(req,res)=>{
    try{
      await Post.destroy({

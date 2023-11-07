@@ -1,9 +1,9 @@
 const router = require('express').Router();
-const { User, Post, Comment } = require('../models');
+const { Post } = require('../models');
 // Import the custom middleware
-const {withAuth, areAuth } = require('../utils/auth');
-// router.use(withAuth);
-// GET all galleries for homepage
+const {withAuth } = require('../utils/auth');
+
+// GET all posts for homepage
 router.get('/', async (req, res) => {
   try {
 
@@ -23,6 +23,7 @@ router.get('/', async (req, res) => {
   }
 });
 
+//gets all post for the current user
 router.get('/dashboard', withAuth, async(req,res)=>{
   try {
     const dbPostData = await Post.findAll({
@@ -43,18 +44,17 @@ router.get('/dashboard', withAuth, async(req,res)=>{
   }
 })
 
+//renders the dashboard to add a new post
 router.get('/dashboard/new', withAuth, async(req,res)=>{
-  // console.log(req.session);
   res.render('dashboard-new');
 })
 
-
-
-
+//gets the login page
 router.get('/login', areAuth, (req, res) => {
   res.render('login');
 });
 
+//gets the signup page
 router.get('/signup',(req,res)=>{
   res.render('signup');
 })

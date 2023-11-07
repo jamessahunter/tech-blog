@@ -2,6 +2,7 @@ const User = require('./User');
 const Post = require('./Post');
 const Comment = require('./Comments')
 
+//links models together
 User.hasMany(Post, {
   foreignKey: 'user_id',
 });

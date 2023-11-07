@@ -22,6 +22,7 @@ router.post('/', async (req, res) => {
     }
   });
 
+// creates a new comment
 router.post('/comments', async (req, res) => {
     try {
       const dbCommentData = await Comment.create({
